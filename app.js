@@ -1,12 +1,20 @@
 import { MEAL_API_URL } from "./config.js";
-const getDataBtn = document.querySelector("#get-data-btn");
+const searchMealBtn = document.querySelector("#get-data-btn");
 const inputField = document.querySelector("#inputField");
 const container = document.getElementById("data-container");
-const getRecipeBtn = document.querySelector(".recipe-btn");
 
-getDataBtn.addEventListener("click", () => {
+searchMealBtn.addEventListener("click", () => {
   const searchResult = inputField.value;
-  const searchByName = `${MEAL_API_URL}${searchResult}`;
+  const searchMealByName = `${MEAL_API_URL}${searchResult}`;
+  fetchMealData(searchMealByName);
+});
+
+function retrieveRecipeData(mealName) {
+  const searchMealByName = `${MEAL_API_URL}${mealName}`;
+  fetchMealData(searchMealByName);
+}
+
+function fetchMealData(searchByName) {
   fetch(searchByName)
     .then((response) => {
       if (!response.ok) {
@@ -21,8 +29,7 @@ getDataBtn.addEventListener("click", () => {
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
-});
-
+}
 function displayData(data) {
   container.innerHTML = "";
   data.meals.forEach((item) => {
@@ -37,13 +44,15 @@ function displayData(data) {
        <span class='category-name'>Category: ${item.strCategory}</span>
        <span class='area-name'>Origin: ${item.strArea}</span>
       `;
-    getRecipeBtn.addEventListener("click", () => {
-      getRecipeData();
-    });
     mealCard.appendChild(getRecipeBtn);
     container.appendChild(mealCard);
+    getRecipeBtn.addEventListener("click", () => {
+      // getRecipeData();
+      retrieveRecipeData(item.strMeal);
+    });
   });
 }
-function getRecipeData() {
-  console.log("clicked");
-}
+
+// function getRecipeData() {
+//   window.open("https://www.google.com/?zx=1768256797711&no_sw_cr=1", "_blank");
+// }
