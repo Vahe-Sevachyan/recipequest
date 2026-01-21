@@ -1,5 +1,6 @@
 import { MEAL_API_URL } from "./config.js";
 const searchMealBtn = document.querySelector("#get-data-btn");
+searchMealBtn.setAttribute("value", "Search Meal");
 const inputField = document.querySelector("#inputField");
 const container = document.getElementById("data-container");
 
@@ -9,12 +10,12 @@ searchMealBtn.addEventListener("click", () => {
   fetchMealData(searchMealByName);
 });
 
-function retrieveRecipeData(mealName) {
+function retrieveRecipeData(mealName, buttonValue) {
   const searchMealByName = `${MEAL_API_URL}${mealName}`;
-  fetchMealData(searchMealByName);
+  fetchMealData(searchMealByName, buttonValue);
 }
 
-function fetchMealData(searchByName) {
+function fetchMealData(searchByName, buttonValue, searchMealBtn) {
   fetch(searchByName)
     .then((response) => {
       if (!response.ok) {
@@ -23,19 +24,25 @@ function fetchMealData(searchByName) {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      if (buttonValue === "Get Recipe") {
+        console.log("Clicked");
+        // get recipe data function will go here
+        return;
+      }
       displayData(data);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
 }
+
 function displayData(data) {
   container.innerHTML = "";
   data.meals.forEach((item) => {
     const getRecipeBtn = document.createElement("button");
     getRecipeBtn.classList.add("recipe-btn");
     getRecipeBtn.innerHTML = "Get Recipe";
+    getRecipeBtn.setAttribute("value", "Get Recipe");
     const mealCard = document.createElement("div");
     mealCard.classList.add("meal-card");
     mealCard.innerHTML = `
@@ -48,7 +55,8 @@ function displayData(data) {
     container.appendChild(mealCard);
     getRecipeBtn.addEventListener("click", () => {
       // getRecipeData();
-      retrieveRecipeData(item.strMeal);
+      const recipeButtonValue = getRecipeBtn.value;
+      retrieveRecipeData(item.strMeal, recipeButtonValue);
     });
   });
 }
