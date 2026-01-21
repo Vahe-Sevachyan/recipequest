@@ -54,3 +54,14 @@ main {
 /*.moreinfo-btn {
     display: block;
 }*/
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    display: none;
+}

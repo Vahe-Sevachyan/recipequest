@@ -3,7 +3,8 @@ const searchMealBtn = document.querySelector("#get-data-btn");
 searchMealBtn.setAttribute("value", "Search Meal");
 const inputField = document.querySelector("#inputField");
 const container = document.getElementById("data-container");
-
+const showModal = document.querySelector(".modal");
+const closeModal = document.querySelector(".close-modal");
 searchMealBtn.addEventListener("click", () => {
   const searchResult = inputField.value;
   const searchMealByName = `${MEAL_API_URL}${searchResult}`;
@@ -15,8 +16,8 @@ function retrieveRecipeData(mealName, buttonValue) {
   fetchMealData(searchMealByName, buttonValue);
 }
 
-function fetchMealData(searchByName, buttonValue, searchMealBtn) {
-  fetch(searchByName)
+function fetchMealData(searchByMealName, buttonValue, searchMealBtn) {
+  fetch(searchByMealName)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -27,6 +28,7 @@ function fetchMealData(searchByName, buttonValue, searchMealBtn) {
       if (buttonValue === "Get Recipe") {
         console.log("Clicked");
         // get recipe data function will go here
+        showRecipeInfo();
         return;
       }
       displayData(data);
@@ -36,6 +38,14 @@ function fetchMealData(searchByName, buttonValue, searchMealBtn) {
     });
 }
 
+function showRecipeInfo() {
+  // modal.classList.remove("hidden");
+  // modal.classList.add("visible");
+  showModal.style.display = "block";
+}
+closeModal.addEventListener("click", () => {
+  showModal.style.display = "none";
+});
 function displayData(data) {
   container.innerHTML = "";
   data.meals.forEach((item) => {
