@@ -5,6 +5,7 @@ const inputField = document.querySelector("#inputField");
 const container = document.getElementById("data-container");
 const showModal = document.querySelector(".modal");
 const closeModal = document.querySelector(".close-modal");
+
 searchMealBtn.addEventListener("click", () => {
   const searchResult = inputField.value;
   const searchMealByName = `${MEAL_API_URL}${searchResult}`;
@@ -16,6 +17,8 @@ function retrieveRecipeData(mealName, buttonValue) {
   fetchMealData(searchMealByName, buttonValue);
 }
 
+// const ingredientObjectKeys = "strIngredient";
+
 function fetchMealData(searchByMealName, buttonValue, searchMealBtn) {
   fetch(searchByMealName)
     .then((response) => {
@@ -25,13 +28,24 @@ function fetchMealData(searchByMealName, buttonValue, searchMealBtn) {
       return response.json();
     })
     .then((data) => {
+      //checks if get recipe button is clicked, if not line 48 is executed and new meal search is queried
       if (buttonValue === "Get Recipe") {
-        console.log("Clicked");
-        // get recipe data function will go here
-        showRecipeInfo();
+        data.meals.forEach((meal) => {
+          //checks the object keys that contain "strIngredient" and returns values of only the ones that arent a empty string
+          Object.entries(meal)
+            .filter(([key, value]) => key.includes("strIngredient")) // checks if the object key is equal to "strIngredient"
+            .map(([key, value]) => {
+              if (value) {
+                //if the object key that contains "strIngredient" is not a empty string it returns the value
+                console.log(value);
+                // display recipe data function will go here
+              }
+            });
+        });
+        showRecipeInfo(); // opens recipe modal diplay
         return;
       }
-      displayData(data);
+      displayMealData(data);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
@@ -39,14 +53,14 @@ function fetchMealData(searchByMealName, buttonValue, searchMealBtn) {
 }
 
 function showRecipeInfo() {
-  // modal.classList.remove("hidden");
-  // modal.classList.add("visible");
   showModal.style.display = "block";
 }
+
 closeModal.addEventListener("click", () => {
   showModal.style.display = "none";
 });
-function displayData(data) {
+
+function displayMealData(data) {
   container.innerHTML = "";
   data.meals.forEach((item) => {
     const getRecipeBtn = document.createElement("button");
@@ -69,8 +83,39 @@ function displayData(data) {
       retrieveRecipeData(item.strMeal, recipeButtonValue);
     });
   });
+  console.log(data);
 }
-
+// const activeIngredients = Object.keys(meal).filter((key) =>
+//   key.includes(ingredientKeys),
+// );
+// const activeIngredients2 = Object.entries(meal);
+// const activeIngredients2 = Object.entries(meal).filter((item) =>
+//   console.log(item),
+// );
+// check if object keys are empty or not
+// console.log(resultEntries);
 // function getRecipeData() {
 //   window.open("https://www.google.com/?zx=1768256797711&no_sw_cr=1", "_blank");
 // }
+// data.forEach((item) => {
+//   console.log(item);
+//   const recipeContainer = ducument.createElement("div");
+//   recipeContainer.classList.add("recipe-container");
+//   const recipeList = document.createElement("ul");
+//   recipeList = classlist.add("recipe-list");
+//   const ingredients = data.filter((ingredient) => {
+//     if(ingredient){}
+//   })
+//   recipeList.innerHTML = `
+
+//     `;
+// });
+
+// const resultEntries = Object.entries(meal)
+//   .filter(([key, value]) => key.includes(ingredientKeys))
+//   .map(([key, value]) => {
+//     if (value) {
+//       console.log(value);
+//     }
+//   });
+// });
