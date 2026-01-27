@@ -1,11 +1,12 @@
 import { MEAL_API_URL } from "./config.js";
-const searchMealBtn = document.querySelector("#get-data-btn");
+const searchMealBtn = document.querySelector("#search-btn");
 searchMealBtn.setAttribute("value", "Search Meal");
 const inputField = document.querySelector("#inputField");
 const container = document.getElementById("data-container");
 const recipeModal = document.querySelector(".modal");
 const closeModal = document.querySelector(".close-modal");
-const recipeList = document.querySelector(".recipe-list");
+const ingredientListContainer = document.querySelector(".ingredients-list");
+const measurementListContainer = document.querySelector(".measurements-list");
 
 searchMealBtn.addEventListener("click", () => {
   const searchResult = inputField.value;
@@ -21,6 +22,8 @@ function retrieveRecipeData(mealName, buttonValue) {
 let mealIngredients = [];
 let mealMeasurments = [];
 
+// displayRecipeData(ingredientMeasurmentsCombined);
+
 function fetchMealData(searchByMealName, buttonValue) {
   fetch(searchByMealName)
     .then((response) => {
@@ -30,7 +33,7 @@ function fetchMealData(searchByMealName, buttonValue) {
       return response.json();
     })
     .then((data) => {
-      //checks if get recipe button is clicked, otherwise skips to showRecipeInfo() function below and executes a new meal search query
+      //checks if get recipe button is clicked, otherwise skips to showRecipeModal() function below and executes a new meal search query
       if (buttonValue === "Get Recipe") {
         data.meals.forEach((meal) => {
           //checks the object keys that contain "strIngredient" and returns values of only the ones that arent a empty string
@@ -46,19 +49,17 @@ function fetchMealData(searchByMealName, buttonValue) {
             .filter(([key, value]) => key.includes("strMeasure")) // checks if the object key is equal to "strMeasure"
             .map(([key, value]) => {
               if (value) {
+                console.log(value);
                 mealMeasurments.push(value);
                 //if the object key that contains "strMeasure" does not have a empty string it adds the value
               }
             });
-          const ingredientMeasurmentsCombined = mealIngredients.map(
-            (meal, index) => {
-              return meal + " " + mealMeasurments[index];
-            },
-          );
-          displayRecipeData(ingredientMeasurmentsCombined);
           // console.log(ingredientMeasurmentsCombined);
+          // console.log(data);
+          displayIngredientList(mealIngredients);
+          displayMeasurentList(mealMeasurments);
         });
-        showRecipeInfo(); // opens recipe modal diplay
+        showRecipeModal(); // opens recipe modal diplay
         return;
       }
       displayMealData(data);
@@ -67,14 +68,17 @@ function fetchMealData(searchByMealName, buttonValue) {
       console.error("Error fetching data:", error);
     });
 }
-
-function showRecipeInfo() {
+// const ingredientMeasurmentsCombined = mealIngredients.map((meal, index) => {
+//   return meal + " " + mealMeasurments[index];
+// });
+function showRecipeModal() {
   recipeModal.style.display = "block";
 }
 
 closeModal.addEventListener("click", () => {
   recipeModal.style.display = "none";
-  recipeList.innerHTML = "";
+  ingredientListContainer.innerHTML = "";
+  measurementListContainer.innerHTML = "";
   mealIngredients = [];
   mealMeasurments = [];
 });
@@ -90,9 +94,9 @@ function displayMealData(data) {
     mealCard.classList.add("meal-card");
     mealCard.innerHTML = `
       <img src="${item.strMealThumb}" class="meal-img">
-       <span class='meal-name'> ${item.strMeal}</span>
-       <span class='category-name'>Category: ${item.strCategory}</span>
-       <span class='area-name'>Origin: ${item.strArea}</span>
+       <span class='meal-name'> <strong>${item.strMeal}</strong></span>
+       <span class='category-name'><strong>Category:</strong> ${item.strCategory}</span>
+       <span class='area-name'> <strong>Origin:</strong> ${item.strArea}</span>
       `;
     mealCard.appendChild(getRecipeBtn);
     container.appendChild(mealCard);
@@ -103,12 +107,25 @@ function displayMealData(data) {
   });
 }
 
-function displayRecipeData(recipeData) {
-  recipeData.forEach((recipe) => {
+function displayIngredientList(ingredientList) {
+  console.log(ingredientList);
+  ingredientList.forEach((ingredient) => {
     const listItem = document.createElement("li");
     listItem.classList.add("list-item");
-    listItem.innerHTML = ` <li>${recipe}</li>`;
-    recipeList.appendChild(listItem);
+    listItem.innerHTML = ` ${ingredient}`;
+    ingredientListContainer.appendChild(listItem);
   });
-  recipeModal.appendChild(recipeList);
+}
+
+function displayMeasurentList(measurementsList) {
+  console.log(measurementsList);
+
+  measurementsList.forEach((measurement) => {
+    if (measurement.trim().length > 0) {
+      const listItem = document.createElement("li");
+      listItem.classList.add("list-item");
+      listItem.innerHTML = `${measurement}`;
+      measurementListContainer.appendChild(listItem);
+    }
+  });
 }

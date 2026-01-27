@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="reset.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+            rel="stylesheet"
+        />
         <title>Recipe Quest</title>
         <style>
             body {
@@ -14,25 +18,38 @@
     </head>
     <body>
         <main>
-            <h1>Recipe Quest</h1>
-            <div class="nav-container">
-                <nav>
+            <nav class="nav-container">
+                <h1>Recipe Quests</h1>
+                <div>
                     <input
                         type="text"
                         id="inputField"
                         placeholder="Search by name"
                         value="pizza"
                     />
-                    <button id="get-data-btn">Search</button>
-                </nav>
-            </div>
+                    <button id="search-btn">Search</button>
+                </div>
+            </nav>
+
             <div id="data-container"></div>
-            <div class="modal hidden">
-                <ul class="recipe-list"></ul>
-                <h3>Recipe Info</h3>
-                <button class="close-modal">close</button>
+            <div class="modal">
+                <div class="modal-wrapper">
+                    <h3 class="modal-header">Recipe Information</h3>
+                    <div class="recipe-wrapper">
+                        <div class="ingredient-container">
+                            <h4>Ingredients</h4>
+                            <ul class="ingredients-list"></ul>
+                        </div>
+                        <div class="measurement-container">
+                            <h4>Measurments</h4>
+                            <ul class="measurements-list"></ul>
+                        </div>
+                    </div>
+                    <button class="close-modal">close</button>
+                </div>
             </div>
         </main>
+        <footer></footer>
         <script type="module" src="./app.js"></script>
     </body>
 </html>
