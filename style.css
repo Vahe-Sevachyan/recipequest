@@ -68,6 +68,7 @@ input {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     justify-content: center;
+    align-items: center;
     gap: 10px;
     margin-top: 20px;
 }
@@ -93,45 +94,67 @@ input {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    padding: 20px;
-    background-color: white;
+    /*padding: 20px;*/
+    background-color: #393e46;
     border-radius: 5px;
     display: none;
     width: 500px;
+}
+
+.ingredient-list,
+.measurement-list {
+    /*position: relative;
+    right: 40px;
+    bottom: 30px;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    line-height: 22px;
+    font-family: Quicksand, Geneva, Tahoma, sans-serif;
+    list-style: none;
+}
+.list-item {
+    margin: 0 10px;
+    list-style: none;
+}
+.ingredient-container,
+.measurement-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    /*border: 1px solid blue;*/
+}
+.modal-header {
+    font-size: 25px;
+    font-family: Quicksand, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+    color: #00adb5;
+    margin: 0;
 }
 .modal-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.ingredient-list {
-    list-style: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.list-item {
-    list-style: none;
-}
-.ingredients-list,
-.measurements-list {
-    position: relative;
-    right: 40px;
-    bottom: 30px;
-    line-height: 22px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.modal-header {
-    font-size: 25px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 400;
-}
-.ingredient-container,
-.measurement-container {
-    display: flex;
-    flex-direction: column;
+    width: 500px;
+    border: 1px red solid;
 }
 .recipe-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+    /*margin: 0;
+    padding: 0;*/
+}
+
+.recipe-wrapper h4 {
+    font-family: Quicksand, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    margin: 0;
+    /*padding: 0;*/
 }

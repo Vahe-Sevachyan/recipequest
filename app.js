@@ -5,9 +5,14 @@ const inputField = document.querySelector("#inputField");
 const container = document.getElementById("data-container");
 const recipeModal = document.querySelector(".modal");
 const closeModal = document.querySelector(".close-modal");
-const ingredientListContainer = document.querySelector(".ingredients-list");
-const measurementListContainer = document.querySelector(".measurements-list");
-
+const ingredientListContainer = document.querySelector(".ingredient-container");
+const measurementListContainer = document.querySelector(
+  ".measurement-container",
+);
+const ingredientList = document.createElement("ul");
+ingredientList.classList.add("ingredient-list");
+const measurementList = document.createElement("ul");
+measurementList.classList.add("measurement-list");
 searchMealBtn.addEventListener("click", () => {
   const searchResult = inputField.value;
   const searchMealByName = `${MEAL_API_URL}${searchResult}`;
@@ -75,14 +80,6 @@ function showRecipeModal() {
   recipeModal.style.display = "block";
 }
 
-closeModal.addEventListener("click", () => {
-  recipeModal.style.display = "none";
-  ingredientListContainer.innerHTML = "";
-  measurementListContainer.innerHTML = "";
-  mealIngredients = [];
-  mealMeasurments = [];
-});
-
 function displayMealData(data) {
   container.innerHTML = "";
   data.meals.forEach((item) => {
@@ -107,25 +104,37 @@ function displayMealData(data) {
   });
 }
 
-function displayIngredientList(ingredientList) {
-  console.log(ingredientList);
-  ingredientList.forEach((ingredient) => {
+function displayIngredientList(ingredientListItem) {
+  // console.log(ingredientList);
+
+  ingredientListContainer.appendChild(ingredientList);
+  ingredientListItem.forEach((ingredient) => {
     const listItem = document.createElement("li");
     listItem.classList.add("list-item");
     listItem.innerHTML = ` ${ingredient}`;
-    ingredientListContainer.appendChild(listItem);
+    ingredientList.appendChild(listItem);
+    // ingredientListContainer.innerHTML = `<li class ="list-item">${ingredient}</li>`;
   });
 }
 
-function displayMeasurentList(measurementsList) {
-  console.log(measurementsList);
+function displayMeasurentList(measurementsListItems) {
+  console.log(measurementsListItems);
 
-  measurementsList.forEach((measurement) => {
+  measurementListContainer.appendChild(measurementList);
+  measurementsListItems.forEach((measurement) => {
     if (measurement.trim().length > 0) {
       const listItem = document.createElement("li");
       listItem.classList.add("list-item");
       listItem.innerHTML = `${measurement}`;
-      measurementListContainer.appendChild(listItem);
+      measurementList.appendChild(listItem);
+      // measurementListContainer.innerHTML = `<li class = "list-item">${measurement}</li>`;
     }
   });
 }
+closeModal.addEventListener("click", () => {
+  recipeModal.style.display = "none";
+  ingredientList.innerHTML = "";
+  measurementList.innerHTML = "";
+  mealIngredients = [];
+  mealMeasurments = [];
+});
