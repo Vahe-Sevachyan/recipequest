@@ -19,11 +19,13 @@ input,
 }
 #search-btn {
     padding: 5px;
-    width: 80px;
+    width: 110px;
     font-family: Quicksand, Geneva, Tahoma, sans-serif;
     font-size: 15px;
     border-radius: 5px;
+    height: 40px;
     font-weight: 400;
+    padding: 0;
 }
 #search-btn:hover {
     background-color: #00adb5;
@@ -31,8 +33,22 @@ input,
     transition: 0.4s;
     cursor: pointer;
 }
-input {
+#inputField {
+    width: 70%;
+    padding: 12px;
+    margin: 10px 0;
+    box-sizing: border-box;
     border-radius: 5px;
+}
+#inputField:focus {
+    outline: none;
+}
+.search-input-container {
+    /*border: 1px solid red;*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
 }
 .meal-name {
     font-size: 23px;
@@ -98,9 +114,32 @@ input {
     background-color: #393e46;
     border-radius: 5px;
     display: none;
-    width: 500px;
+    width: 800px;
+    border-radius: 15px;
+    height: 600px; /* Or max-height */
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*overflow: auto;*/
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: darkgrey lightgrey;
+}
+.modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    /*border-radius: 10px;*/
+    /*border: 1px red solid;*/
+}
+modal::-webkit-scrollbar {
+    width: 10px; /* Chrome, Safari, Opera */
 }
 
+.modal::-webkit-scrollbar-thumb {
+    background-color: darkgrey; /* Chrome, Safari, Opera */
+    border-radius: 10px;
+}
 .ingredient-list,
 .measurement-list {
     /*position: relative;
@@ -118,6 +157,9 @@ input {
 .list-item {
     margin: 0 10px;
     list-style: none;
+    font-size: 15px;
+    color: whitesmoke;
+    /*border: 1px solid white;*/
 }
 .ingredient-container,
 .measurement-container {
@@ -134,20 +176,15 @@ input {
     font-family: Quicksand, Geneva, Tahoma, sans-serif;
     font-weight: 500;
     color: #00adb5;
-    margin: 0;
+    margin: 10px 0 0 0;
 }
-.modal-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 500px;
-    border: 1px red solid;
-}
+
 .recipe-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    /*align-items: center;*/
+    width: 315px;
+    /*border: 1px solid blue;*/
     /*margin: 0;
     padding: 0;*/
 }
@@ -155,6 +192,62 @@ input {
 .recipe-wrapper h4 {
     font-family: Quicksand, Geneva, Tahoma, sans-serif;
     font-size: 20px;
-    margin: 0;
+    margin: 10px 0 10px 0;
+    font-weight: 400;
+    color: whitesmoke;
     /*padding: 0;*/
+}
+.close-modal {
+    margin: 15px 0 10px 0;
+    border: none;
+    padding: 5px;
+    width: 120px;
+    font-family: Quicksand, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    border-radius: 5px;
+    font-weight: 400;
+}
+.close-modal:hover {
+    background-color: #00adb5;
+    color: white;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.instructions-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    width: 650px;
+    /*margin: 0;*/
+}
+.instructions-container ul {
+    color: whitesmoke;
+    font-family: Quicksand, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    margin: 0;
+    opacity: 1;
+}
+.instructions-btn {
+    margin: 15px 0 10px 0;
+    border: none;
+    padding: 8px;
+    width: 130px;
+    font-family: Quicksand, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.instructions-btn:hover {
+    background-color: #00adb5;
+    color: white;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.cooking-instructions-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
 }

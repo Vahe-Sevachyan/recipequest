@@ -15,17 +15,15 @@
         <main>
             <nav class="nav-container">
                 <h1>Recipe Quests</h1>
-                <div>
+                <div class="search-input-container">
                     <input
                         type="text"
                         id="inputField"
-                        placeholder="Search by name"
-                        value="pizza"
+                        placeholder="Search food..."
                     />
                     <button id="search-btn">Search</button>
                 </div>
             </nav>
-
             <div id="data-container"></div>
             <div class="modal">
                 <div class="modal-wrapper">
@@ -40,6 +38,11 @@
                             <!--<ul class="measurements-list"></ul>-->
                         </div>
                     </div>
+                    <button class="instructions-btn">Show Instructions</button>
+                    <div class="instructions-container">
+                        <div class="cooking-instructions-list-container"></div>
+                    </div>
+
                     <button class="close-modal">close</button>
                 </div>
             </div>
