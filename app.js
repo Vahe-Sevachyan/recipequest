@@ -35,19 +35,12 @@ searchMealBtn.addEventListener("click", () => {
 });
 
 function retrieveRecipeData(mealName, buttonValue) {
-  // if (recipeModal.hasChildNodes()) {
-  //   console.log("element has child node");
-
-  // }
-
   const searchMealByName = `${MEAL_API_URL}${mealName}`;
   fetchMealData(searchMealByName, buttonValue);
 }
 
 let mealIngredients = [];
 let mealMeasurments = [];
-
-// displayRecipeData(ingredientMeasurmentsCombined);
 
 function fetchMealData(searchByMealName, buttonValue) {
   fetch(searchByMealName)
@@ -79,12 +72,11 @@ function fetchMealData(searchByMealName, buttonValue) {
                 //if the object key that contains "strMeasure" does not have a empty string it adds the value
               }
             });
-          // console.log(ingredientMeasurmentsCombined);
+
           console.log(data);
           displayIngredientList(mealIngredients);
           displayMeasurementList(mealMeasurments);
           DisplayCookingInstructions(meal);
-          // DisplayMealVideo(meal);
           embedYouTubeVideo(meal.strYoutube);
         });
 
@@ -98,9 +90,7 @@ function fetchMealData(searchByMealName, buttonValue) {
       console.error("Error fetching data:", error);
     });
 }
-// const ingredientMeasurmentsCombined = mealIngredients.map((meal, index) => {
-//   return meal + " " + mealMeasurments[index];
-// });
+
 function showRecipeModal() {
   recipeModal.style.display = "block";
 }
@@ -126,11 +116,7 @@ function displayMealData(data) {
       clearModal();
       const recipeButtonValue = getRecipeBtn.value;
       retrieveRecipeData(item.strMeal, recipeButtonValue);
-      // getRecipeBtn.disabled = true;
     });
-    // if (!recipeModal.style.display === "block") {
-
-    // }
   });
 }
 
@@ -214,16 +200,7 @@ function clearModal() {
   instructionsButton.innerHTML = "Show Instructions";
   cookingInstructionsListContainer.style.display = "none";
 }
-// window.addEventListener("click", (event) => {
-//   if (event.target === recipeModal) {
-//     recipeModal.style.display = "none";
-//     ingredientList.innerHTML = "";
-//     measurementList.innerHTML = "";
-//     instructionsContainer.innerHTML = "";
-//     mealIngredients = [];
-//     mealMeasurments = [];
-//   }
-// });
+
 function embedYouTubeVideo(videoUrl) {
   // 1. Extract the video ID from the URL (standard YouTube URL format)
   const videoId = videoUrl.split("?v=")[1];
@@ -248,9 +225,3 @@ function embedYouTubeVideo(videoUrl) {
   // Append to the container
   instructionsContainer.appendChild(iframeElement);
 }
-// function DisplayCookingInstructions(instructions) {
-//   const instructionsParagraph = document.createElement("p");
-//   instructionsParagraph.classList.add("instructions-paragraph");
-//   instructionsParagraph.innerHTML = `${instructions.strInstructions}`;
-//   instructionsContainer.appendChild(instructionsParagraph);
-// }

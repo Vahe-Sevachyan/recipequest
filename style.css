@@ -11,6 +11,11 @@ body {
 }
 h1 {
     color: #eeeeee;
+    margin: 0;
+}
+h2 {
+    color: whitesmoke;
+    font-family: Quicksand, Geneva, Tahoma, sans-serif;
 }
 input,
 #search-btn {
