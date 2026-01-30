@@ -1,5 +1,12 @@
 body {
     background-color: #222831;
+    margin: 0;
+    padding: 0;
+    background-image: url(cooker-king.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; /* Centers the image within the element */
+    background-attachment: fixed;
 }
 .nav-container {
     display: flex;
@@ -9,13 +16,22 @@ body {
     width: 400px;
     font-family: Quicksand, Geneva, Tahoma, sans-serif;
 }
+.nav-container span {
+    color: mediumslateblue;
+}
 h1 {
-    color: #eeeeee;
+    color: whitesmoke;
     margin: 0;
 }
-h2 {
+h2,
+h3 {
     color: whitesmoke;
     font-family: Quicksand, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 5px 0 5px 0;
+}
+h3 {
+    color: whitesmoke;
 }
 input,
 #search-btn {
@@ -42,14 +58,13 @@ input,
     width: 70%;
     padding: 12px;
     margin: 10px 0;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
     border-radius: 5px;
 }
 #inputField:focus {
     outline: none;
 }
 .search-input-container {
-    /*border: 1px solid red;*/
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -91,7 +106,8 @@ input,
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-top: 20px;
+    /*margin-top: 20;*/
+    margin: 20px 15px 5px 15px;
 }
 .meal-card {
     display: flex;
@@ -99,8 +115,6 @@ input,
     justify-content: center;
     align-items: center;
     font-family: Quicksand, Geneva, Tahoma, sans-serif;
-    /*background-color: #31363f;*/
-    /*border: 1px solid gray;*/
 }
 .meal-img {
     height: auto;
@@ -115,16 +129,14 @@ input,
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    /*padding: 20px;*/
     background-color: #393e46;
     border-radius: 5px;
     display: none;
     width: 800px;
     border-radius: 15px;
-    height: 600px; /* Or max-height */
+    height: 600px;
     overflow-y: auto;
     overflow-x: hidden;
-    /*overflow: auto;*/
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: darkgrey lightgrey;
 }
@@ -134,8 +146,6 @@ input,
     justify-content: center;
     align-items: center;
     width: 800px;
-    /*border-radius: 10px;*/
-    /*border: 1px red solid;*/
 }
 modal::-webkit-scrollbar {
     width: 10px; /* Chrome, Safari, Opera */
@@ -147,9 +157,6 @@ modal::-webkit-scrollbar {
 }
 .ingredient-list,
 .measurement-list {
-    /*position: relative;
-    right: 40px;
-    bottom: 30px;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -164,7 +171,6 @@ modal::-webkit-scrollbar {
     list-style: none;
     font-size: 15px;
     color: whitesmoke;
-    /*border: 1px solid white;*/
 }
 .ingredient-container,
 .measurement-container {
@@ -174,7 +180,6 @@ modal::-webkit-scrollbar {
     align-items: center;
     margin: 0;
     padding: 0;
-    /*border: 1px solid blue;*/
 }
 .modal-header {
     font-size: 25px;
@@ -187,11 +192,7 @@ modal::-webkit-scrollbar {
 .recipe-wrapper {
     display: flex;
     justify-content: space-between;
-    /*align-items: center;*/
     width: 315px;
-    /*border: 1px solid blue;*/
-    /*margin: 0;
-    padding: 0;*/
 }
 
 .recipe-wrapper h4 {
@@ -200,7 +201,6 @@ modal::-webkit-scrollbar {
     margin: 10px 0 10px 0;
     font-weight: 400;
     color: whitesmoke;
-    /*padding: 0;*/
 }
 .close-modal {
     margin: 15px 0 10px 0;
@@ -225,7 +225,6 @@ modal::-webkit-scrollbar {
     align-items: center;
     padding: 10px 20px;
     width: 650px;
-    /*margin: 0;*/
 }
 .instructions-container ul {
     color: whitesmoke;
@@ -255,4 +254,67 @@ modal::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    color: whitesmoke;
+    font-family: Quicksand, Geneva, Tahoma, sans-serif;
+}
+a {
+    margin: 0 5px 0 5px;
+    color: steelblue;
+}
+
+@media screen and (max-width: 625px) {
+    h1 {
+        font-size: 25px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    .search-input-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        width: 260px;
+    }
+    #inputField {
+        width: 75%;
+        padding: 8px;
+        border-radius: 5px;
+    }
+    #search-btn {
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    #data-container {
+        border: 1px solid red;
+        /*width: 100%;*/
+        /*justify-items: center;*/
+        /*align-content: stretch;*/
+        place-self: center;
+        /*place-items: center;*/
+        /*align-self: auto;*/
+        /*width: 300px;*/
+        /*margin: auto;*/
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    /*.meal-card {
+        width: 100%;
+    }
+    body {
+        width: 100%;
+    }*/
+    /*@media screen and (max-width: 425px) {
+        #data-container {
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            border: 1px solid red;
+        }*/
 }

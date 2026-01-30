@@ -1,4 +1,5 @@
 import { MEAL_API_URL } from "./config.js";
+
 const searchMealBtn = document.querySelector("#search-btn");
 searchMealBtn.setAttribute("value", "Search Meal");
 const inputField = document.querySelector("#inputField");
