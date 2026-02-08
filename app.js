@@ -84,7 +84,7 @@ function fetchMealData(searchByMealName, buttonValue) {
           embedYouTubeVideo(meal.strYoutube);
         });
 
-        showRecipeModal(); // opens recipe modal diplay
+        showRecipeModal(); // 
 
         return;
       }
