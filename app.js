@@ -1,5 +1,5 @@
-import { MEAL_API_URL } from "./configs.js";
-
+// import { MEAL_API_URL } from "./configs.js";
+const MEAL_API_URL = `https://www.themealdb.com/api/json/v1/1/search.php?s=`;
 const searchMealBtn = document.querySelector("#search-btn");
 searchMealBtn.setAttribute("value", "Search Meal");
 const inputField = document.querySelector("#inputField");
