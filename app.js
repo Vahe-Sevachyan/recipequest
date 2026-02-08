@@ -20,6 +20,10 @@ const cookingInstructionsListContainer = document.querySelector(
 );
 const instructionsButton = document.querySelector(".instructions-btn");
 const iframeElement = document.createElement("iframe");
+
+window.addEventListener('load',()=>{
+  fetchMealData(`${MEAL_API_URL}chicken`)
+})
 inputField.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
