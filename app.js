@@ -73,7 +73,6 @@ function fetchMealData(searchByMealName, buttonValue) {
                 //if the object key that contains "strMeasure" does not have a empty string it adds the value
               }
             });
-
           console.log(data);
           displayIngredientList(mealIngredients);
           displayMeasurementList(mealMeasurments);
