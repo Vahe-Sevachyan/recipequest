@@ -1,4 +1,4 @@
-import { MEAL_API_URL } from "./config.js";
+import { MEAL_API_URL } from "./configs.js";
 
 const searchMealBtn = document.querySelector("#search-btn");
 searchMealBtn.setAttribute("value", "Search Meal");
